@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp ../WakeUpDecoder/wakeup_share_sim.py .)",
+      "Bash(cp ../WakeUpDecoder/wakeup_share_import.py .)",
+      "Bash(python decoder.py 2bce137ad56d4ad19539c79834647dac)",
+      "PowerShell(Stop-Job *)",
+      "Bash(python -c ' *)",
+      "Bash(awk '{printf \"%-25s %6s\\\\n\", $9, $5}')"
+    ]
+  }
+}
