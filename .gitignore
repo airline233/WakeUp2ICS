@@ -48,6 +48,5 @@ htmlcov/
 *.ics
 test_output/
 
-# WakeUpDecoder modules (copied from parent project)
-wakeup_share_sim.py
-wakeup_share_import.py
+# log
+*.log
