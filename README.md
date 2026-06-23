@@ -54,10 +54,10 @@ uvicorn app:app --host 0.0.0.0 --port 8000
 
 ```bash
 # 浏览器直接访问
-http://127.0.0.1:8888/2bce137ad56d4ad19539c79834647dac
+http://127.0.0.1:62778/2bce137ad56d4ad19539c79834647dac
 
 # 或使用curl下载
-curl http://127.0.0.1:8888/2bce137ad56d4ad19539c79834647dac -o schedule.ics
+curl http://127.0.0.1:62778/2bce137ad56d4ad19539c79834647dac -o schedule.ics
 ```
 
 ### 方式2: POST接口（高级自定义）
@@ -65,7 +65,7 @@ curl http://127.0.0.1:8888/2bce137ad56d4ad19539c79834647dac -o schedule.ics
 #### 2.1 解析课程表（仅获取JSON）
 
 ```bash
-curl -X POST http://localhost:8888/parse \
+curl -X POST http://localhost:62778/parse \
   -H "Content-Type: application/json" \
   -d '{"code": "你的分享口令"}'
 ```
@@ -73,7 +73,7 @@ curl -X POST http://localhost:8888/parse \
 #### 2.2 生成ICS文件（自定义参数）
 
 ```bash
-curl -X POST http://localhost:8888/generate-ics \
+curl -X POST http://localhost:62778/generate-ics \
   -H "Content-Type: application/json" \
   -d '{
     "code": "你的分享口令",
@@ -86,14 +86,14 @@ curl -X POST http://localhost:8888/generate-ics \
 ### 方式3: 健康检查
 
 ```bash
-curl http://localhost:8888/health
+curl http://localhost:62778/health
 ```
 
 ## API文档
 
 启动服务后访问：
-- Swagger UI: `http://localhost:8888/docs`
-- ReDoc: `http://localhost:8888/redoc`
+- Swagger UI: `http://localhost:62778/docs`
+- ReDoc: `http://localhost:62778/redoc`
 
 ## 使用示例
 
@@ -102,7 +102,7 @@ curl http://localhost:8888/health
 启动服务后，直接在浏览器访问：
 
 ```
-http://127.0.0.1:8888/你的分享口令
+http://127.0.0.1:62778/你的分享口令
 ```
 
 浏览器会自动下载 `schedule.ics` 文件，可直接导入到：
@@ -115,10 +115,10 @@ http://127.0.0.1:8888/你的分享口令
 
 ```bash
 # 下载ICS文件
-curl http://127.0.0.1:8888/2bce137ad56d4ad19539c79834647dac -o mycourse.ics
+curl http://127.0.0.1:62778/2bce137ad56d4ad19539c79834647dac -o mycourse.ics
 
 # 查看课程表JSON数据
-curl -X POST http://127.0.0.1:8888/parse \
+curl -X POST http://127.0.0.1:62778/parse \
   -H "Content-Type: application/json" \
   -d '{"code": "你的分享口令"}'
 ```
@@ -129,7 +129,7 @@ curl -X POST http://127.0.0.1:8888/parse \
 
 | 配置项 | 说明 | 示例 |
 |--------|------|------|
-| APK_PATH | WakeUp APK文件路径 | `../WakeUpDecoder/WakeUp课程表_6.1.70.apk` |
+| APK_PATH | WakeUp APK文件路径 | `WakeUp课程表_6.1.70.apk` |
 | ANDROID_ID | Android设备ID | `0000000000000000` |
 
 **注意**：学期开始日期和作息时间会自动从课程表数据中读取，无需手动配置。
@@ -146,7 +146,7 @@ curl -X POST http://127.0.0.1:8888/parse \
 | REMINDER_MINUTES | 上课前提醒时间（分钟） | `15` |
 | SEMESTER_START_DATE | 覆盖课程表的学期开始日期（可选） | `2024-09-01` |
 | HOST | 服务监听地址 | `127.0.0.1` |
-| PORT | 服务监听端口 | `8888` |
+| PORT | 服务监听端口 | `62778` |
 
 ## 项目结构
 
@@ -174,7 +174,7 @@ WakeUp2ICS/
 
 ### Q: ANDROID_ID填什么？
 
-可以填写任意16位十六进制字符串（如 `0000000000000000`），或使用真实Android设备的Device ID。
+请填写使用过WakeUp课程表的设备的Android ID（可使用DevCheck查看），否则会命中反作弊
 
 ### Q: 生成的ICS文件无法导入？
 
@@ -195,4 +195,5 @@ WakeUp2ICS/
 
 ## 致谢
 
-感谢 [WakeUpDecoder](https://github.com/airline233/WakeUpDecoder) 项目提供的解析算法。
+感谢 GPT-5.5 的逆向支持
+感谢 opus-4.8 完成本项目
